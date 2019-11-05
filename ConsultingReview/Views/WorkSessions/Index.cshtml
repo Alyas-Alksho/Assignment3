@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ConsultingReview.Models.WorkSession>
+
+@{
+    ViewData["Title"] = "Work Sessions";
+}
+
+<h3>Work Sessions for #@ViewData["id"]- @ViewData["Name"]</h3>
+
+<p>
+    <a asp-action="Create" asp-route-id=@ViewData["Id"] asp-route-Name=@ViewData["Name"]>Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateWorked)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Consultant.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Consultant.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalChargeBeforeTax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkDescription)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateWorked)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Consultant.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Consultant.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalChargeBeforeTax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkDescription)
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.WorkSessionId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.WorkSessionId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.WorkSessionId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,66 @@
+﻿@model ConsultingReview.Models.WorkSession
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h3>Work Sessions for #@ViewData["id"]- @ViewData["Name"]</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="DateWorked" class="control-label"></label>
+                <input asp-for="DateWorked" class="form-control" />
+                <span asp-validation-for="DateWorked" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.Hidden("ContractId", ViewBag.id, "")
+            </div>
+            <div class="form-group">
+                <label asp-for="ConsultantId" class="control-label"></label>
+                <select asp-for="ConsultantId" class="form-control" asp-items="ViewBag.ConsultantId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoursWorked" class="control-label"></label>
+                <input asp-for="HoursWorked" class="form-control" />
+                <span asp-validation-for="HoursWorked" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="WorkDescription" class="control-label"></label>
+                <input asp-for="WorkDescription" class="form-control" />
+                <span asp-validation-for="WorkDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HourlyRate" class="control-label"></label>
+                <input asp-for="HourlyRate" readonly class="form-control" />
+                @*@Html.Hidden("HourlyRate", Model.HourlyRate, "")*@
+                @*<span asp-validation-for="HourlyRate" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalChargeBeforeTax" class="control-label"></label>
+                <input asp-for="TotalChargeBeforeTax" readonly class="form-control" />
+                @*@Html.Hidden("TotalChargeBeforeTax", Model.TotalChargeBeforeTax, "")*@
+                @*<span asp-validation-for="TotalChargeBeforeTax" class="text-danger"></span>*@
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
